@@ -36,6 +36,29 @@ SecureAuth is a modern, fully responsive **Login & Registration System** designe
 
 ---
 
+
+## 🔧 Installation  
+
+
+# Clone the repository
+```
+git clone https://github.com/your-username/your-repo.git
+```
+
+# Navigate to the project directory
+```
+cd your-repo
+```
+# Install dependencies
+```
+npm install
+```
+# Start the server
+```
+npm start
+```
+
+
 ## 🎨 Theme
 - Primary Colors: **White & Dark Brown**
 - Modern, minimalistic design with hover animations
