@@ -45,4 +45,12 @@ SecureAuth is a modern, fully responsive **Login & Registration System** designe
 ## 🚀 How to Run the Project
 1. Clone the repository:
    ```bash
-   git clone [your-repo-link]
+   git clone []
+
+
+## ✍ Author  
+
+**Rushikesh Jadhav** – Developed during Internship at **Main Flow Services**  
+
+📌 [LinkedIn Profile](https://www.linkedin.com/in/rushikeshjadhav2004) | [Portfolio](https://codewithrishii.vercel.app/)  
+
