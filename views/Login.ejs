@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authify</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #fff8f3;
+            color: #4b2e2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ✅ Navbar */
+        .navbar-custom {
+            background-color: #4b2e2e;
+        }
+        .navbar-custom .nav-link,
+        .navbar-custom .navbar-brand {
+            color: #fff !important;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #f5d3a1 !important;
+        }
+
+        /* ✅ Layout */
+        .login-wrapper {
+            display: flex;
+            min-height: 80vh;
+            margin-top: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ✅ Left Image Section */
+        .login-left {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df') no-repeat center center/cover;
+            position: relative;
+        }
+        .login-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(75, 46, 46, 0.6);
+        }
+        .login-left-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #fff;
+            z-index: 2;
+        }
+        .login-left-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .login-left-content p {
+            font-size: 1rem;
+        }
+
+        /* ✅ Right Form Section */
+        .login-right {
+            flex: 1;
+            background: #fff;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+        }
+        .login-right h1 {
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #4b2e2e;
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #cbb9a8;
+            padding: 12px;
+        }
+        .form-control:focus {
+            border-color: #a87c5b;
+            box-shadow: 0 0 8px rgba(168, 124, 91, 0.3);
+        }
+        .btn-login {
+            background: #a87c5b;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 12px;
+            transition: background 0.3s ease;
+        }
+        .btn-login:hover {
+            background: #8d6343;
+        }
+
+        .register-link a {
+            color: #a87c5b;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ✅ Footer */
+        .footer-custom {
+            background: #4b2e2e;
+            color: #f5d3a1;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+        .footer-custom a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-custom a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .login-wrapper {
+                flex-direction: column;
+            }
+            .login-left, .login-right {
+                flex: none;
+                width: 100%;
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">Authify</a>
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" href="#">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ✅ Login Section -->
+    <div class="container login-wrapper">
+        <!-- Left Side -->
+        <div class="login-left">
+            <div class="login-left-content">
+                <h2>Welcome Back!</h2>
+                <p>Login to access your profile and explore amazing features.</p>
+            </div>
+        </div>
+        <!-- Right Side -->
+        <div class="login-right">
+            <div class="w-100">
+                <h1>Login</h1>
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-login" type="submit">Login</button>
+                    </div>
+                    <div class="text-end register-link">
+                        Don't have an account? <a href="/register">Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <p>&copy; 2025 <strong>Authify</strong> | Built with ❤️ by 
+                <a href="https://github.com/RushikeshJadhav2004" target="_blank">Rushikesh Jadhav</a></p>
+            <p>
+                <a href="http://www.linkedin.com/in/rushikeshjadhav2004" target="_blank">LinkedIn</a> |
+                <a href="mailto:rushikeshjadhav3596@gmail.com">Email</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

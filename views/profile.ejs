@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Authify</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #5C4033;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #f8f5f2;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar-custom {
+      background-color: #5C4033;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #d7b899 !important;
+    }
+
+    /* ANIMATED BACKGROUND */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg, #f7ede1, #d7b899, #f8f5f2);
+      background-size: 600% 600%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -2;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* FLOATING SHAPES */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+      50% { transform: translateY(-50px) rotate(180deg); opacity: 0.8; }
+      100% { transform: translateY(0) rotate(360deg); opacity: 0.4; }
+    }
+
+    /* PROFILE WRAPPER */
+    .profile-wrapper {
+      max-width: 1100px;
+      margin: 70px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      overflow: hidden;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      animation: fadeIn 0.8s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* LEFT SIDE */
+    .profile-left {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    .profile-cover {
+      width: 100%;
+      height: 220px;
+      background: url('<%= user.imgUrl || "https://source.unsplash.com/700x220/?coffee,brown" %>') center/cover no-repeat;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 6px solid #fff;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      position: absolute;
+      bottom: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 110px;
+    }
+    .profile-email {
+      font-size: 1.1rem;
+      color: #7a5f4b;
+      margin-bottom: 20px;
+    }
+    .profile-actions .btn {
+      background: #5C4033;
+      color: #fff;
+      border-radius: 8px;
+      margin: 5px;
+      padding: 12px 20px;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+    .profile-actions .btn:hover {
+      background: #a47148;
+      transform: scale(1.05);
+    }
+
+    /* RIGHT SIDE */
+    .profile-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: slideIn 1.2s ease-in-out;
+    }
+    .welcome-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #5C4033;
+      margin-bottom: 15px;
+    }
+    .welcome-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #6d4e38;
+      background: #fdfaf6;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      animation: fadeUp 1.5s ease;
+    }
+
+    /* FOOTER */
+    .footer-custom {
+      background-color: #5C4033;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: auto;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-custom a {
+      color: #d7b899;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+    .footer-custom a:hover {
+      color: #fff;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 992px) {
+      .profile-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-right {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="animated-bg"></div>
+<div class="floating-shapes">
+  <div class="shape" style="width:120px;height:120px;top:20%;left:10%;animation-delay:0s;"></div>
+  <div class="shape" style="width:80px;height:80px;top:60%;left:30%;animation-delay:2s;"></div>
+  <div class="shape" style="width:100px;height:100px;top:40%;left:70%;animation-delay:4s;"></div>
+  <div class="shape" style="width:60px;height:60px;top:80%;left:50%;animation-delay:6s;"></div>
+  <div class="shape" style="width:150px;height:150px;top:10%;left:80%;animation-delay:8s;"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Authify</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item mx-2"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="/register">Register</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="/login">Login</a></li>
+        <li class="nav-item mx-2"><a class="nav-link" href="/">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PROFILE SECTION -->
+<div class="profile-wrapper">
+  <!-- LEFT SIDE -->
+  <div class="profile-left">
+    <div class="profile-cover">
+      <img src="<%= user.imgUrl %>" alt="Profile Image" class="profile-pic">
+    </div>
+    <h1 class="profile-name"><%= user.name %></h1>
+    <p class="profile-email"><i class="fas fa-envelope"></i> <%= user.email %></p>
+    <div class="profile-actions">
+      <a href="/" class="btn"><i class="fas fa-home"></i> Home</a>
+      <a href="/" class="btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="profile-right">
+    <h2 class="welcome-title">Welcome to Authify!</h2>
+    <p class="welcome-text">
+      Thank you for registering with us!  
+      Your journey toward a secure and seamless experience begins here.  
+      We are thrilled to have you on board, and we promise to keep your data safe and your experience smooth.  
+      Explore your profile, manage your settings, and enjoy the simplicity of modern authentication.  
+      Stay tuned for more features and updates designed just for you.  
+      Your trust means everything to us – let's build something amazing together!
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer-custom">
+  <div class="container">
+    <p>&copy; 2025 <strong>Authify</strong> | Built by 
+      <a href="https://github.com/RushikeshJadhav2004" target="_blank">Rushikesh Jadhav</a>
+    </p>
+    <p>
+      <a href="http://www.linkedin.com/in/rushikeshjadhav2004" target="_blank">LinkedIn</a> |
+      <a href="mailto:rushikeshjadhav3596@gmail.com">Email</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
