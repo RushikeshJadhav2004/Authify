@@ -63,12 +63,12 @@ npm start
 - Primary Colors: **White & Dark Brown**
 - Modern, minimalistic design with hover animations
 
----
 
 ## 🚀 How to Run the Project
 1. Clone the repository:
+
    ```
-  https://github.com/RushikeshJadhav2004/MainFlow_task_4.git
+    https://github.com/RushikeshJadhav2004/MainFlow_task_4.git
   ```
 
 
